@@ -1,4 +1,4 @@
-const CACHE_NAME = "liga-efootball-v7";
+const CACHE_NAME = "liga-efootball-v10";
 
 const FILES_TO_CACHE = [
   "./",
