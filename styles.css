@@ -1,0 +1,250 @@
+/* ================== RESET ================== */
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ================== BODY ================== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(20,0,30,.92), rgba(5,0,10,.96)),
+    url("img/fondo.png") center / cover no-repeat;
+}
+
+/* ================== LOGIN ================== */
+#login {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.login-box {
+  background: #140017;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  width: 280px;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+}
+
+.login-box button {
+  background: #a100ff;
+  border: none;
+  padding: 10px 22px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ================== CONTENIDO ================== */
+.hidden {
+  display: none;
+}
+
+/* ================== HEADER ================== */
+header {
+  text-align: center;
+  padding: 28px 20px;
+}
+
+/* LOGO – tamaño recomendado */
+.logo {
+  max-width: 240px; /* RECOMENDADO */
+  filter: drop-shadow(0 0 14px rgba(161,0,255,.55));
+}
+
+/* ================== MENU ================== */
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 22px;          /* MÁS separación entre botones */
+  margin-bottom: 30px; /* MÁS aire abajo */
+}
+
+.menu-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.35);
+  color: white;
+  padding: 12px 30px;  /* BOTONES más grandes */
+  border-radius: 26px;
+  cursor: pointer;
+  transition: all .25s ease;
+  font-weight: 500;
+}
+
+
+.menu-btn:hover {
+  border-color: #a100ff;
+  transform: translateY(-1px);
+}
+
+.menu-btn.active {
+  background: #a100ff;
+  border-color: #a100ff;
+  box-shadow: 0 0 14px rgba(161,0,255,.5);
+}
+
+/* ================== SECCIONES (FIX DEFINITIVO) ================== */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeUp .35s ease;
+}
+
+/* Animación limpia */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================== MAIN ================== */
+main {
+  padding: 20px;
+}
+
+/* ================== TABLA ================== */
+.table-header,
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr repeat(4, 50px) 70px;
+  align-items: center;
+}
+
+.table-header {
+  opacity: .7;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.row {
+  padding: 10px 0;
+  transition: background .2s ease;
+}
+
+.row:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+/* LÍDER */
+.row.leader {
+  color: #ffd700;
+  font-weight: 800;
+}
+
+/* EQUIPO */
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team img {
+  width: 30px;        /* mejora visibilidad */
+  height: 30px;
+  object-fit: contain;
+}
+
+/* PUNTOS */
+.pts {
+  font-weight: 800;
+}
+
+/* ================== REGLAMENTO (DISEÑO NORMAL) ================== */
+.reglamento-normal {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(0,0,0,.45);
+  padding: 20px;      /* compacto */
+  border-radius: 16px;
+  line-height: 1.5;   /* SIN espacios exagerados */
+}
+
+.reglamento-normal h2 {
+  text-align: center;
+  color: #a100ff;
+  margin-bottom: 14px;
+  font-weight: 800;
+}
+
+.reglamento-normal h3 {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.reglamento-normal ul {
+  padding-left: 18px;
+  margin: 6px 0 10px;
+}
+
+.reglamento-normal li {
+  margin-bottom: 8px;
+  opacity: .95;
+}
+
+/* ================== FOOTER ================== */
+footer {
+  position: fixed;
+  bottom: 14px;
+  right: 18px;
+  opacity: .65;
+  font-size: 14px;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 600px) {
+
+  header {
+    padding: 22px 15px;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+
+  .table-header,
+  .row {
+    grid-template-columns: 30px 1fr repeat(4, 40px) 50px;
+    font-size: 12px;
+  }
+
+  .team img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .reglamento-normal {
+    padding: 16px;
+  }
+}

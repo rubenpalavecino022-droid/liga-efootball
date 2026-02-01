@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Liga eFootball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+ 
+  <link rel="stylesheet" href="styles.css">
+</head>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <h2>LIGA EFOOTBALL</h2>
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="checkPassword()">Entrar</button>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div id="content" class="hidden">
+
+<header>
+  <img src="img/logo.png" class="logo">
+</header>
+
+
+<main>
+
+  <!-- MENU -->
+  <nav class="menu">
+    <button class="menu-btn active" onclick="showSection('tabla')">Tabla</button>
+    <button class="menu-btn" onclick="showSection('reglamento')">Reglamento</button>
+  </nav>
+
+  <!-- TABLA -->
+  <section id="tabla" class="section active">
+    <div class="table-header">
+      <span>#</span>
+      <span>EQUIPOS</span>
+      <span>PJ</span>
+      <span>PG</span>
+      <span>PP</span>
+      <span>PA</span>
+      <span class="pts">PTS</span>
+    </div>
+
+    <div id="table-body"></div>
+  </section>
+
+  <!-- REGLAMENTO -->
+  
+<section id="reglamento" class="section">
+
+  <div class="reglamento-normal">
+
+    <h2>REGLAMENTO LIGA EFOOTBALL</h2>
+
+    <h3>PUNTUACIÓN Y DESCONEXIONES</h3>
+    <ul>
+      <li>
+        <b>Abandono Voluntario:</b>
+        Si un jugador abandona el partido intencionalmente, se le otorgarán
+        <b>6 puntos</b> al rival.
+      </li>
+
+      <li>
+        <b>Desconexión en Empate:</b>
+        Si el juego se interrumpe por error de red estando en empate,
+        se definirá mediante <b>Gol de Oro</b> en un nuevo partido.
+      </li>
+
+      <li>
+        <b>Criterio del Minuto 75:</b>
+        Si un equipo lidera el marcador y ocurre una desconexión a partir del
+        minuto 75, se le otorgan <b>3 puntos</b>.
+      </li>
+
+      <li>
+        <b>Ventaja Amplia (Min 40–74):</b>
+        Si un equipo gana por <b>3 o más goles</b> y ocurre una desconexión
+        después del minuto 40, se le otorgan los 3 puntos.
+        En caso contrario, se juega Gol de Oro.
+      </li>
+
+      <li>
+        <b>Tiempos Extra:</b>
+        En caso de desconexión en la prórroga:
+        si un equipo iba ganando, se lleva los 3 puntos;
+        si estaban empatados, se define por Gol de Oro.
+      </li>
+    </ul>
+
+    <h3>DINÁMICA DE JUEGO</h3>
+    <ul>
+      <li>
+        <b>Límite de Partidos:</b>
+        Se permiten hasta 2 partidos diarios contra el mismo rival.
+        Es posible recuperar partidos atrasados en días posteriores.
+      </li>
+
+      <li>
+        <b>Validez:</b>
+        Los puntos solo serán válidos si el encuentro supera los
+        <b>10 minutos de juego</b> y ambos jugadores utilizan
+        equipos registrados oficialmente.
+      </li>
+    </ul>
+
+  </div>
+
+</section>
+
+</main>
+  
+
+<footer>
+  <span>@LigaEfootball</span>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
