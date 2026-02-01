@@ -1,7 +1,7 @@
 {
   "name": "Liga eFootball",
   "short_name": "eFootball",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#140017",
   "theme_color": "#a100ff",
