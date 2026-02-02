@@ -5,19 +5,26 @@
   <title>Liga eFootball</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="img/icono.png">
+
+  <!-- MANIFEST PWA -->
+  <link rel="manifest" href="manifest.json">
+
   <!-- FUENTE -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- CSS -->
- 
   <link rel="stylesheet" href="styles.css">
 </head>
+
+<body>
+
 <script>
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
   }
 </script>
-<body>
 
 <!-- LOGIN -->
 <div id="login">
@@ -33,11 +40,7 @@
 
 <header>
   <img src="img/logo.png" class="logo">
-<link rel="icon" type="image/png" href="img/icono.png">
-<link rel="apple-touch-icon" href="img/icono.png">
-  
 </header>
-
 
 <main>
 
@@ -61,6 +64,7 @@
 
     <div id="table-body"></div>
   </section>
+
 
   <!-- REGLAMENTO -->
   
