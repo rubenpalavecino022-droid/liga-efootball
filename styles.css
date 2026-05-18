@@ -1,0 +1,830 @@
+/* ================= CONFIGURACIÓN GENERAL Y RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #030712; /* Fondo oscuro profundo */
+  color: #ffffff;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ================= RESTRICCIÓN EXCLUSIVA PARA CELULAR ================= */
+#content, #login {
+  width: 100%;
+  max-width: 480px; /* Ancho estructural de un smartphone */
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+/* ================= FONDO MUNDIALISTA NÍTIDO ================= */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background: url("img/fondo.png") center top no-repeat;
+  background-size: cover;
+  filter: blur(1.5px) brightness(0.55); /* Máxima nitidez permitiendo leer las letras */
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 25, 47, 0.7) 0%,
+    rgba(20, 35, 60, 0.4) 50%,
+    rgba(10, 15, 30, 0.8) 100%
+  );
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================= LOGIN ================= */
+#login {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(20,35,60,1) 0%, rgba(5,10,20,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 35px 25px;
+  border-radius: 24px;
+  text-align: center;
+  width: 85%;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.login-box h2 {
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  font-size: 22px;
+  background: linear-gradient(90deg, #ffffff, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #ffd700;
+}
+
+.login-box button {
+  background: linear-gradient(135deg, #ffd700, #b8860b);
+  color: #030712;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 800;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* ================= HEADER ================= */
+header {
+  text-align: center;
+  padding: 30px 15px 10px 15px;
+}
+
+.logo {
+  max-width: 150px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+}
+
+/* ================= NAV MENU ================= */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 10px;
+}
+/* Corrección para que las pestañas entren perfectas en celular */
+@media (max-width: 480px) {
+  .menu-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px; /* Reduce la separación entre botones */
+    padding: 10px 5px;
+  }
+
+  .menu-btn {
+    font-size: 11px !important; /* Achica un pelín la letra */
+    padding: 6px 10px !important; /* Reduce el espacio interno del botón */
+    white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+  }
+}
+
+.menu-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-weight: 600;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.menu-btn.active {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(184, 134, 11, 0.1));
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+}
+
+/* ================= SECCIONES ================= */
+.section {
+  display: none;
+  padding: 10px 12px 80px 12px;
+}
+
+.section.active {
+  display: block;
+}
+
+/* ================= EL DISEÑO DE LA PRIMERA IMAGEN (REPLICADO) ================= */
+.table-container {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 20px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Cabecera idéntica a tu primera foto */
+.table-header {
+  display: grid;
+  grid-template-columns: 35px auto 38px 38px 38px 38px 45px;
+  align-items: center;
+  padding: 12px 10px;
+  margin-bottom: 12px;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+/* Filas encapsuladas con los característicos bordes dorados independientes */
+.row {
+  display: grid;
+  grid-template-columns: 35px auto 38px 38px 38px 38px 45px;
+  align-items: center;
+  padding: 14px 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: rgba(10, 25, 47, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.5); /* Borde dorado premium */
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.table-header span:not(:nth-child(2)),
+.row span:not(:nth-child(2)) {
+  text-align: center;
+}
+
+/* Posiciones destacadas en color oro */
+.row span:first-child {
+  color: #ffd700;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.team img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* El líder del grupo tiene el resplandor de la primera propuesta */
+.row.leader {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 255, 255, 0.02));
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Columna final de puntos (PTS) en oro */
+.row span:last-child {
+  color: #ffd700;
+  font-weight: 800;
+}
+
+/* ================= REGLAMENTO MÓVIL ================= */
+.reglamento {
+  background: rgba(10, 25, 47, 0.45);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.reglamento h2 {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.reglamento h3 {
+  color: #ffd700;
+  font-size: 14px;
+  margin-top: 20px;
+  border-left: 3px solid #ffd700;
+  padding-left: 8px;
+}
+
+.reglamento ul {
+  padding-left: 15px;
+  margin: 10px 0;
+}
+
+.reglamento li {
+  font-size: 12px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ================= CAMPEONES MÓVIL ================= */
+.champions-container {
+  padding: 5px;
+}
+
+.champions-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 12px;
+}
+
+.champion-row {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 12px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: rgba(10, 25, 47, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 215, 0, 0.5); /* Mismo borde dorado de la tabla de posiciones */
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.champion-row:active {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.champion-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.champion-name {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.champion-achievements {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars-container {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.star {
+  width: 35px;   /* Subimos el tamaño para que se vean bien grandes y épicas */
+  height: 35px;
+  object-fit: contain;
+  margin-right: 4px; /* Un pequeño espacio elegante entre estrella y estrella */
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6)); /* Efecto de brillo dorado */
+}
+
+
+.titles-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.titles-box {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  margin-top: 0;
+  padding: 0 10px;
+}
+
+.titles-box.active {
+  margin-top: 12px;
+  padding: 10px;
+  max-height: 300px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.titles-box p {
+  margin: 6px 0;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 25px 15px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+}
+
+/* ================= ESTILOS NUEVOS EXTRA: MARCADOR MUNDIALISTA ================= */
+.fechas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fecha-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fecha-titulo {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffd700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding-bottom: 4px;
+}
+
+.partidos-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.partido-fila-mini {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  background: rgba(10, 25, 47, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.partido-fila-mini:hover {
+  border-color: #ffd700;
+  transform: scale(1.01);
+}
+
+.equipo-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.equipo-mini.derecha {
+  justify-content: flex-end;
+}
+
+.equipo-mini img {
+  width: 18px;
+  height: 12px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.vs-mini {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 0;
+  border-radius: 6px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Marcador Ampliado (Igual a tu captura FIFA) --- */
+.marcador-detalle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.btn-volver {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.score-board-fifa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #ffd700;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+.fifa-team-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 30%;
+}
+
+.fifa-team-side.right {
+  justify-content: flex-end;
+}
+
+.fifa-flag {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fifa-code {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffd700;
+  letter-spacing: 0.5px;
+}
+
+.fifa-score-box {
+  font-size: 20px;
+  font-weight: 800;
+  background: #0d1b2a;
+  color: white;
+  min-width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* El espacio exclusivo para la imagen (Ahora más grande) */
+.fifa-center-trophy {
+  width: 42px;      /* Subimos de 32px a 42px para darle más presencia */
+  height: 42px;     /* Subimos de 32px a 42px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Un destello sutil dorado detrás del logo para que resalte en el fondo negro */
+  filter: drop-shadow(0 0 8px rgba(210, 161, 57, 0.4)); 
+}
+
+/* La imagen dentro del contenedor */
+.fifa-center-trophy img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Evita que la imagen se estire o se deforme */
+}
+
+/* Ajustamos levemente el contenedor de los números para que todo mantenga el equilibrio */
+.fifa-score-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;        /* Aumentamos un poquito la separación para que la imagen grande respire */
+  width: 40%;
+}
+
+/* ================= DISEÑO DE CALENDARIO Y MARCADOR DE FECHAS ================= */
+.marcador-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fecha-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.fecha-titulo {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding-bottom: 4px;
+}
+
+.partidos-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.partido-fila-mini {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  align-items: center;
+  background: rgba(10, 25, 47, 0.4);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.partido-fila-mini:active {
+  transform: scale(0.98);
+}
+
+.equipo-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.equipo-mini.derecha {
+  justify-content: flex-end;
+}
+
+.equipo-mini img {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.vs-mini {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffd700;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ================= MARCADOR MUNDIALISTA SIMÉTRICO ================= */
+
+/* Contenedor principal que centra todo */
+.marcador-detalle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* El botón de volver, alineado a la izquierda */
+.btn-volver {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 40px; /* Separación con el marcador */
+}
+
+/* La cápsula del marcador principal con borde amarillo de la imagen */
+.score-board-fifa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px; /* Ajuste para celular */
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+  border: 1.5px solid #ffd700; /* Borde amarillo/dorado idéntico a la imagen */
+  border-radius: 50px; /* Muy redondeado (cápsula) */
+  padding: 10px 20px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15); /* Brillo sutil amarillo */
+}
+
+/* Estilo para los bloques de equipo (Izquierda y Derecha) */
+.fifa-team-side {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio uniforme entre bandera y texto */
+  width: 30%; /* Ancho fijo para simetría */
+}
+
+.fifa-team-side.right {
+  justify-content: flex-end; /* Alinea código y bandera a la derecha */
+}
+
+/* Banderas limpias con bordes redondeados */
+.fifa-flag {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Códigos de equipo (BRA, ARG) en amarillo/blanco de la imagen */
+.fifa-code {
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+/* El centro que contiene los resultados y el badge */
+.fifa-score-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espacio idéntico entre número, trofeo y número */
+  width: 40%;
+}
+
+/* LAS CAJAS DE RESULTADO: Ahora oscuras con borde, sin el azul viejo */
+.fifa-score-box {
+  font-size: 20px; /* Tipografía más grande y digital */
+  font-weight: 800;
+  background: #0d1b2a; /* Fondo oscuro integrado al diseño, no azul */
+  color: white;
+  min-width: 38px; /* Ancho fijo para simetría */
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* El contenedor del centro del marcador */
+.fifa-score-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;         /* Espacio exacto entre número, trofeo y número */
+  width: 40%;       /* Ocupa el espacio central perfecto */
+}
+
+/* El espacio exclusivo para la imagen */
+.fifa-center-trophy {
+  width: 32px;      /* Ancho del contenedor en el diseño */
+  height: 32px;     /* Alto del contenedor en el diseño */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* La imagen en sí: se adapta al contenedor sin deformarse */
+.fifa-center-trophy img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Evita que la imagen se estire o se rompa */
+}
+
+/* ================= ACTUALIZACIÓN DE DISEÑO DORADO (#D2A139) ================= */
+
+/* 1. La cápsula del marcador principal con tu nuevo color dorado */
+.score-board-fifa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(0, 0, 0, 0.65); /* Fondo un poquito más oscuro para que resalte el oro */
+  border: 1.5px solid #D2A139;      /* NUEVO COLOR: Borde dorado elegante */
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 0 25px rgba(210, 161, 57, 0.25); /* Destello sutil usando tu dorado */
+}
+
+/* 2. El efecto de brillo en las Estrellas Grandes de los campeones */
+.star {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 4px;
+  /* El brillo del fondo de la estrella ahora acompaña a tu color */
+  filter: drop-shadow(0 0 6px rgba(210, 161, 57, 0.7)); 
+}
+
+/* 3. Ajuste por si tenías textos de alerta o títulos en amarillo en la sección */
+.champion-name, .titles-count {
+  font-weight: 700;
+}
+
+/* Si usas la tipografía dorada en textos de carga o estado */
+.loading-text-gold {
+  color: #D2A139 !important;
+  font-weight: bold;
+}
