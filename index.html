@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liga eFootball</title>
+
+  <!-- Cargar Google Fonts Montserrat (Pesos: 500 y 800) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap" rel="stylesheet">
+
+    
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0A192F">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="eFootball">
+
+  <link rel="apple-touch-icon" href="./img/icono-192.png">
+  <link rel="icon" type="image/png" href="./img/icono-192.png">
+</head>
+
+<body>
+
+  <div id="login-screen">
+    <div class="login-box">
+      <img src="img/logo.png" class="login-logo" alt="Logo Liga">
+      <h3>LIGA EFOOTBALL</h3>
+      <input type="password" id="password" placeholder="Contraseña">
+      <button id="login-btn">Entrar</button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header>
+      <img src="img/logo.png" class="main-logo" alt="Logo Liga">
+      <h4>LIGA eFOOTBALL</h4>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-section="tabla">Tabla</button>
+      <button class="tab-btn" data-section="fechas">Fechas</button>
+      <button class="tab-btn" data-section="champions">Campeones</button>
+      <button class="tab-btn" data-section="reglamento">Reglamento</button>
+    </div>
+
+    <section id="tabla" class="section active">
+      <div class="table-wrapper">
+        <div class="table-header">
+          <span class="header-team-title">EQUIPO</span>
+          <div class="table-header-stats">
+            <span>PJ</span>
+            <span>G</span>
+            <span>E</span>
+            <span>P</span>
+            <span class="hide-on-small">GF</span>
+            <span class="hide-on-small">GC</span>
+            <span>DG</span>
+            <span class="pts-hd">PTS</span>
+          </div>
+        </div>
+        <div id="table-body"></div>
+      </div>
+    </section>
+
+    <section id="fechas" class="section">
+      <div id="fechas-container"></div>
+    </section>
+
+    <section id="champions" class="section">
+      <div class="champions-box">
+        <h2 class="champions-header">HISTORIAL DE CAMPEONES</h2>
+        <div id="champions-body"></div>
+      </div>
+    </section>
+
+    <section id="reglamento" class="section">
+      <div class="rules-box">
+        <h2>REGLAMENTO OFICIAL</h2>
+        <div class="rule-group">
+          <h3>PUNTUACIÓN Y DESCONEXIONES</h3>
+          <ul>
+            <li><b>Desconexión:</b> Si el juego se interrumpe por error de red estando en empate, se definirá mediante un Gol de Oro en un nuevo partido.</li>
+            <li><b>Criterio del Minuto 75:</b> Si un equipo lidera el marcador y ocurre una desconexión a partir del minuto 75, se le otorgan los 3 puntos sin importar la diferencia de goles.</li>
+            <li><b>Ventaja Amplia:</b> Si un equipo gana por 3 o más goles y ocurre una desconexión después del minuto 40, se le otorgan los 3 puntos. Si la diferencia es menor o ocurre antes del minuto 40, se juega Gol de Oro.</li>
+            <li><b>Tiempo Extra:</b> En caso de desconexión en la prórroga: si un equipo iba ganando, se lleva los 3 puntos; si estaban empatados, se define por Gol de Oro.</li>
+          </ul>
+        </div>
+        <div class="rule-group">
+          <h3>DINÁMICA</h3>
+          <ul>
+            <li><b>Validez:</b> Los partidos tendrán una duración de 10 minutos y ambos participantes utilizan sus equipos registrados oficialmente.</li>
+            <li><b>Abandono Voluntario:</b> Si un jugador abandona el partido intencionalmente, se le otorgarán 3 puntos al rival, si tiene una diferencia de 1 gol.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
