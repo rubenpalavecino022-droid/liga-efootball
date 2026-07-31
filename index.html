@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liga eFootball</title>
+
+  <!-- Cargar Google Fonts Montserrat (Pesos: 500 y 800) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0A192F">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="eFootball">
+
+  <link rel="apple-touch-icon" href="./img/icono-192.png">
+  <link rel="icon" type="image/png" href="./img/icono-192.png">
+</head>
+
+<body>
+
+  <div id="login-screen">
+    <div class="login-box">
+      <img src="img/logo.png" class="login-logo" alt="Logo Liga">
+      <h3>LIGA EFOOTBALL</h3>
+      <input type="password" id="password" placeholder="Contraseña">
+      <button id="login-btn">Entrar</button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header>
+      <img src="img/logo.png" class="main-logo" alt="Logo Liga">
+      <h4>LIGA eFOOTBALL</h4>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-section="tabla">Tabla</button>
+      <button class="tab-btn" data-section="fechas">Fechas</button>
+      <button class="tab-btn" data-section="champions">Campeones</button>
+      <button class="tab-btn" data-section="reglamento">Reglamento</button>
+    </div>
+
+    <section id="tabla" class="section active">
+      <div class="table-wrapper">
+        <div class="table-header">
+          <span class="header-team-title">EQUIPO</span>
+          <div class="table-header-stats">
+            <span>PJ</span>
+            <span>G</span>
+            <span>E</span>
+            <span>P</span>
+            <span class="hide-on-small">GF</span>
+            <span class="hide-on-small">GC</span>
+            <span>DG</span>
+            <span class="pts-hd">PTS</span>
+          </div>
+        </div>
+        <div id="table-body"></div>
+      </div>
+    </section>
+
+    <section id="fechas" class="section">
+      <div id="fechas-container"></div>
+    </section>
+
+    <section id="champions" class="section">
+      <div class="champions-box">
+        <h2 class="champions-header">HISTORIAL DE CAMPEONES</h2>
+        <div id="champions-body"></div>
+      </div>
+    </section>
+
+    <section id="reglamento" class="section">
+      <div class="rules-box">
+        
+        <div class="rules-header-banner">
+          <h2>REGLAMENTO OFICIAL</h2>
+          <span class="rules-subtitle">Normativa General de Competición</span>
+        </div>
+
+        <!-- ARTÍCULO 1 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">01</span>
+            <h3>DESCONEXIÓN O SALIDA INVOLUNTARIA</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Reanudación Obligatoria:</strong> 
+              Si el partido se interrumpe sin intención por un problema de red o salida accidental, el encuentro <span class="hl">debe volverse a jugar por completo en un nuevo partido</span>.
+            </li>
+            <li>
+              <strong class="rule-tag">Conservación del Marcador:</strong> 
+              Se mantendrá el resultado que había al momento de la desconexión. Al iniciar el nuevo encuentro, se otorgará un margen de <span class="hl">10 minutos dentro del tiempo de juego</span> para que el equipo que iba ganando vuelva a convertir los goles que ya tenía a su favor. Una vez ajustado el marcador, se continúa jugando normalmente hasta completar el partido.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ARTÍCULO 2 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">02</span>
+            <h3>REPORTE DE RESULTADOS Y PRUEBAS</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Captura de Pantalla Obligatoria:</strong> 
+              Al finalizar cada partido, el ganador (o ambos participantes) debe enviar al grupo oficial una captura o foto clara de la pantalla final donde se aprecie el marcador, las estadísticas y los equipos.
+            </li>
+            <li>
+              <strong class="rule-tag">Plazo de Reporte:</strong> 
+              Los resultados deben enviarse dentro de las <span class="hl">2 horas posteriores</span> a la finalización del partido para su correcta carga en la tabla general.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ARTÍCULO 3 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">03</span>
+            <h3>CALENDARIO Y PROGRAMACIÓN</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Ritmo de Juego:</strong> 
+              La meta base es de <span class="hl">1 partido por día</span>.
+            </li>
+            <li>
+              <strong class="rule-tag">Flexibilidad y Zonas Horarias:</strong> 
+              Debido a la diferencia de horarios entre países y compromisos laborales, los participantes coordinarán libremente la hora de sus partidos.
+            </li>
+            <li>
+              <strong class="rule-tag">Adelanto y Recuperación:</strong> 
+              Si los jugadores lo acuerdan, pueden jugar 2 partidos en un mismo día si tienen disponibilidad. De la misma manera, si por motivos personales o laborales un partido no se puede jugar en el día correspondiente, <span class="hl">se podrá reprogramar</span> para jugarse durante la semana.
+            </li>
+            <li>
+              <strong class="rule-tag">Día Libre de Ajuste:</strong> 
+              Se dejará <span class="hl">1 día libre a la semana</span> en el calendario para que se pongan al día con los partidos pendientes o postergados antes de avanzar a las siguientes fechas.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ARTÍCULO 4 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">04</span>
+            <h3>CONFIGURACIÓN ESTÁNDAR</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Duración:</strong> 
+              Los partidos tendrán una duración oficial de 10 minutos.
+            </li>
+            <li>
+              <strong class="rule-tag">Equipos:</strong> 
+              Ambos participantes deben utilizar sus equipos registrados oficialmente.
+            </li>
+            <li>
+              <strong class="rule-tag">Condición y Latencia:</strong> 
+              Se jugará con la configuración; excelente o estándar definida por el juego. Si al ingresar a la sala el indicador de conexión/señal refleja fallas graves antes del pitazo inicial, se podrá rearmar la sala para garantizar un partido fluido y justo.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ARTÍCULO 5 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">05</span>
+            <h3>SANCIONES POR ABANDONO ("RAGE QUIT")</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Conducta Antideportiva:</strong> 
+              Si un participante abandona intencionalmente el partido por enojo o decisión propia, se mantendrá la regla de victoria para el rival. Si la diferencia al momento del abandono era menor o igual a 1 gol, se le otorgarán 3 puntos al rival.
+            </li>
+            <li>
+              <strong class="rule-tag">Reincidencia y Penalizaciones:</strong> 
+              De comprobarse cierres intencionales reiterados, el jugador infractor perderá el partido por un marcador oficial de 3-0 (o se mantendrá el marcador si el rival ya iba ganando por una diferencia mayor) y podrá recibir una quita de 1 a 3 puntos en la tabla general por conducta antideportiva.
+            </li>
+          </ul>
+        </div>
+
+        <!-- ARTÍCULO 6 -->
+        <div class="rule-card">
+          <div class="rule-card-header">
+            <span class="rule-badge">06</span>
+            <h3>FORMATO Y DESEMPATE</h3>
+          </div>
+          <ul class="rule-list">
+            <li>
+              <strong class="rule-tag">Tabla de Posiciones:</strong> 
+              Los puntos se otorgarán de forma tradicional (3 puntos por victoria, 1 por empate y 0 por derrota).
+            </li>
+            <li>
+              <strong class="rule-tag">Desempate Mano a Mano:</strong> 
+              Si dos o más equipos terminan empatados en puntos en la tabla, las posiciones se definirán <span class="hl">exclusivamente jugando partidos mano a mano</span>.
+              <div class="rule-subbox">
+                <div class="subbox-item">
+                  <strong>Empate entre 2 equipos:</strong>
+                  Jugarán un partido directo de desempate para definir la posición o el campeonato.
+                </div>
+                <div class="subbox-item">
+                  <strong>Empate entre 3 o 4 equipos:</strong>
+                  Se tomará la diferencia de gol (DG) y goles a favor (GF) solo para armar las llaves de siembra (ordenar 1°, 2°, 3° y 4°). Posteriormente, se jugará una fase de partidos mano a mano hasta determinar al ganador en la cancha.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
