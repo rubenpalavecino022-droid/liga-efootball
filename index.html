@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liga eFootball</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4A1525">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="eFootball">
+
+  <link rel="apple-touch-icon" href="./img/icono-192.png">
+  <link rel="icon" type="image/png" href="./img/icono-192.png">
+</head>
+
+<body>
+
+  <div id="login-screen">
+    <div class="login-box">
+      <div class="login-logo-wrapper">
+        <img src="img/logo.png" class="login-logo" alt="Logo Liga">
+      </div>
+      <h3>LIGA EFOOTBALL</h3>
+      <p class="login-subtitle">Ingresá tu clave de acceso</p>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Contraseña">
+      </div>
+      <button id="login-btn">Entrar</button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header class="app-header">
+      <img src="img/logo.png" class="main-logo" alt="Logo Liga">
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-section="tabla">Tabla</button>
+      <button class="tab-btn" data-section="fechas">Fechas</button>
+      <button class="tab-btn" data-section="champions">Campeones</button>
+      <button class="tab-btn" data-section="reglamento">Reglas</button>
+    </nav>
+
+    <main class="main-content">
+      <!-- TABLA -->
+      <section id="tabla" class="section active">
+        <div class="table-wrapper">
+          <div class="table-header">
+            <span class="header-team-title">EQUIPO</span>
+            <div class="table-header-stats">
+              <span>PJ</span>
+              <span>G</span>
+              <span>E</span>
+              <span>P</span>
+              <span class="hide-on-small">GF</span>
+              <span class="hide-on-small">GC</span>
+              <span>DG</span>
+              <span class="pts-hd">PTS</span>
+            </div>
+          </div>
+          <div id="table-body"></div>
+        </div>
+      </section>
+
+      <!-- FECHAS -->
+      <section id="fechas" class="section">
+        <div id="fechas-container"></div>
+      </section>
+
+      <!-- CAMPEONES -->
+      <section id="champions" class="section">
+        <div class="champions-box">
+          <div class="section-title-wrap">
+            <h2>Historial de Campeones</h2>
+            <p>Palmarés oficial de la competencia</p>
+          </div>
+          <div id="champions-body"></div>
+        </div>
+      </section>
+
+      <!-- REGLAMENTO -->
+      <section id="reglamento" class="section">
+        <div class="rules-box">
+          
+          <div class="rules-header-banner">
+            <h2>Reglamento Oficial</h2>
+            <span class="rules-subtitle">Normativa General de Competición</span>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">1</span>
+              <h3>Desconexión o salida involuntaria</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Reanudación:</strong> Si el partido se corta por error de red, debe volverse a jugar por completo en un nuevo encuentro.</li>
+              <li><strong class="rule-tag">Marcador:</strong> Se respetarán los goles que había al momento del corte. Se jugarán los minutos necesarios para igualar el marcador previo y se continuará de forma normal.</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">2</span>
+              <h3>Reporte de resultados</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Captura:</strong> Es obligatorio enviar la captura de pantalla de la estadística final al grupo dentro de las 2 horas de finalizado el encuentro.</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">3</span>
+              <h3>Calendario y programación</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Ritmo:</strong> La estimación ideal es de 1 partido diario, con flexibilidad de coordinación entre los jugadores por diferencia horaria o motivos laborales.</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">4</span>
+              <h3>Configuración estándar</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Duración:</strong> Partidos de 10 minutos utilizando los planteles oficiales inscriptos.</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">5</span>
+              <h3>Sanciones por abandono</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Rage Quit:</strong> El abandono intencionado otorga la victoria al rival (3 puntos si la diferencia era mínima o se mantiene la ventaja si era mayor).</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card-header">
+              <span class="rule-badge">6</span>
+              <h3>Desempates</h3>
+            </div>
+            <ul class="rule-list">
+              <li><strong class="rule-tag">Definición:</strong> Los empates en puntos en la tabla general se resuelven mediante partidos mano a mano definitorios en cancha.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
