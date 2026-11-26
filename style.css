@@ -1,0 +1,601 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Paleta gráfica oficial Nations League: Barras blancas puras + Texto gris oscuro + Rombo limpio */
+  --bar-white: #f4f5f7;
+  --bar-white-hover: #ffffff;
+  --bar-leader: #ffffff;
+  --text-dark: #2c313a;      /* Gris grafito oscuro para nombres y puntos */
+  --text-gray: #5a6270;      /* Gris medio para estadísticas y subtítulos */
+  --text-light: #e2e8f0;     /* Blanco humo para encabezados sobre el fondo oscuro */
+  
+  /* Acentos sutiles de las ligas de la imagen (Rojo A, Celeste B, Verde C, Amarillo D) */
+  --nl-red: #e05344;
+  --nl-blue: #469cd6;
+  --nl-green: #58b970;
+  --nl-yellow: #f2c230;
+
+  --font-main: 'Oswald', sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  font-weight: 400;
+  color: var(--text-dark);
+  
+  /* Fondo limpio directo con tu imagen fondo.png sin tintes encima */
+  background-color: #161d2b;
+  background-image: url('img/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.section {
+  display: none;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.section.active {
+  display: block !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= LOGIN / PANTALLA DE BLOQUEO ================= */
+#login-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+  background-color: rgba(18, 24, 36, 0.92);
+  background-image: url('img/fondo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 360px;
+  padding: 36px 28px;
+  text-align: center;
+  background: var(--bar-white);
+  /* Corte hexagonal sutil estilo Nations League */
+  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+}
+
+.login-logo {
+  width: 75px;
+  margin-bottom: 14px;
+}
+
+.login-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.login-subtitle {
+  font-size: 13px;
+  color: var(--text-gray);
+  margin-bottom: 22px;
+}
+
+.login-box input {
+  width: 100%;
+  height: 46px;
+  outline: none;
+  border-radius: 2px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: var(--text-dark);
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.login-box input:focus {
+  border-color: var(--text-dark);
+}
+
+.login-box button {
+  width: 100%;
+  height: 46px;
+  border: none;
+  background: var(--text-dark);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0 50%);
+  transition: background 0.2s;
+}
+
+.login-box button:hover {
+  background: #1a1e24;
+}
+
+.login-magic-exit #login-screen {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.4s ease;
+}
+
+/* ================= APP LAYOUT UNIFICADO ================= */
+#app {
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.app-header {
+  padding: 20px 20px 12px;
+  text-align: center;
+  background: transparent;
+}
+
+.main-logo {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ================= PESTAÑAS / TABS ================= */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px;
+  margin-bottom: 18px;
+}
+
+.tab-btn {
+  flex: 1;
+  height: 38px;
+  border: none;
+  background: rgba(244, 245, 247, 0.82);
+  color: var(--text-gray);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  /* Forma de listón hexagonal Nations League */
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background: #ffffff;
+  color: var(--text-dark);
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: var(--text-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.main-content {
+  flex: 1;
+  padding: 0 0 24px 0;
+  background: transparent;
+}
+
+/* ================= BANDERAS EN DIAMANTE / ROMBO (SIN BORDE DE COLOR) ================= */
+.crest-diamond {
+  width: 26px;
+  height: 26px;
+  transform: rotate(45deg);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 4px;
+  z-index: 2;
+}
+
+.crest-diamond img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotate(-45deg) scale(1.42);
+}
+
+/* ================= TABLA DE POSICIONES (BARRAS BLANCAS SEPARADAS) ================= */
+.table-wrapper {
+  margin: 0 14px;
+  padding: 4px 0;
+  background: transparent; /* Sin caja oscura detrás, para que cada barra blanca flote separada */
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px 8px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-light);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.header-team-title {
+  flex: 1;
+  text-align: left;
+  padding-left: 34px;
+}
+
+.table-header-stats {
+  display: flex;
+  width: 185px; 
+  justify-content: space-between;
+}
+
+.table-header-stats span {
+  width: 21px;
+  text-align: center;
+}
+
+.table-header-stats span.pts-hd {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Cada fila es una barra blanca hexagonal bien separada de la siguiente */
+.table-row-fifa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bar-white);
+  padding: 6px 16px;
+  margin-bottom: 9px; /* Separación marcada entre filas */
+  min-height: 44px;
+  /* Puntas en ángulo de 45 grados idénticas a la imagen */
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  transition: transform 0.15s, background 0.15s;
+}
+
+.table-row-fifa:hover {
+  background: var(--bar-white-hover);
+  transform: translateY(-1px);
+}
+
+.table-row-fifa.leader-row {
+  background: var(--bar-leader);
+}
+
+.row-left-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.position-badge-fifa {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-gray);
+  width: 16px;
+  text-align: center;
+}
+
+.position-badge-fifa.is-leader {
+  color: var(--text-dark);
+}
+
+.team-name-text-fifa {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark); /* Nombres en gris oscuro */
+  letter-spacing: 0.6px;
+  line-height: 1.1;
+}
+
+.row-right-stats-fifa {
+  display: flex;
+  width: 185px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-capsule {
+  width: 21px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-capsule span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-gray); /* Números en gris */
+}
+
+.pts-capsule span {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-dark); /* Puntos en gris grafito más intenso */
+}
+
+/* ================= FECHAS Y PARTIDOS ================= */
+#fechas-container { 
+  padding: 0 14px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+}
+
+.fecha-card {
+  background: transparent;
+}
+
+.fecha-title { 
+  margin-bottom: 8px; 
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  font-size: 13px; 
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Cada partido es una barra blanca hexagonal separada */
+.match-row {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  margin-bottom: 8px;
+  background: var(--bar-white);
+  height: 44px;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+.team-mini { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-size: 13px; 
+  font-weight: 600;
+}
+
+.team-mini.right { 
+  justify-content: flex-end; 
+}
+
+.match-team-name-text {
+  color: var(--text-dark);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.match-score {
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-dark);
+  background: #e2e6ec;
+  padding: 3px 0;
+  letter-spacing: 0.6px;
+  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 50%, calc(100% - 6px) 100%, 6px 100%, 0 50%);
+}
+
+/* ================= CAMPEONES ================= */
+.champions-box {
+  margin: 0 14px;
+  background: transparent;
+}
+
+.section-title-wrap {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.section-title-wrap h2 { 
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.section-title-wrap p {
+  font-size: 12px;
+  color: var(--text-light);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+}
+
+.champion-card { 
+  background: var(--bar-white); 
+  padding: 11px 20px; 
+  margin-bottom: 8px; 
+  cursor: pointer;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  transition: background 0.15s;
+}
+
+.champion-card:hover {
+  background: #ffffff;
+}
+
+.champion-top { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.champion-name { 
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.star { 
+  display: none; 
+}
+
+.titles {
+  display: none;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #d1d5db;
+}
+
+.titles.active {
+  display: block;
+}
+
+.titles p { 
+  margin-top: 2px; 
+  font-size: 12px; 
+  font-weight: 600;
+  color: var(--text-gray); 
+}
+
+/* ================= REGLAMENTO ================= */
+.rules-box {
+  margin: 0 14px;
+}
+
+.rules-header-banner {
+  text-align: center;
+  margin-bottom: 14px;
+  padding: 4px 0;
+}
+
+.rules-header-banner h2 { 
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.rules-subtitle {
+  display: block;
+  font-size: 12px;
+  color: var(--text-light);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+}
+
+.rule-card {
+  background: var(--bar-white);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+.rule-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.rule-badge {
+  background: var(--text-dark);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rule-badge span {
+  transform: rotate(-45deg);
+}
+
+.rule-card-header h3 {
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+
+.rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rule-list li {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-gray);
+}
+
+.rule-tag {
+  color: var(--text-dark);
+  font-weight: 700;
+  display: inline;
+  margin-right: 4px;
+}
+
+@media (max-width: 380px) {
+  .hide-on-small {
+    display: none !important;
+  }
+  .table-header-stats, .row-right-stats-fifa {
+    width: 145px;
+  }
+  .header-team-title {
+    padding-left: 34px;
+  }
+}
